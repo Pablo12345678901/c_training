@@ -153,48 +153,50 @@ for (i=0 ; i<max ; i++)
 
 
 
-/*
+// /*
 // Table de multiplication de 1 à 10
-{   int taille_table, i, y, z, actuel_x, actuel_y ;
+{   int taille_table, i, y, z, actuel_x, actuel_y, taille_separateur ;
     actuel_x = 0 ;
     taille_table = 10 ;
+    taille_separateur = 5 ; 
     // Construction 1ère ligne horizontale
-    printf("    |") ;
+    printf(" X |") ;
     for (i=1 ; i<=taille_table ; i++)
     {   if (i == taille_table)
-            {printf("%4d\n", actuel_x+1) ;}
+            {printf("%3d |\n", actuel_x+1) ;}
         else
-            {   printf("%4d", actuel_x+1) ;
+            {   printf("%3d |", actuel_x+1) ;
                 actuel_x += 1 ;
             }
     }
     // Construction du séparateur
-    printf("----");
-    for (z=0 ; z<=(4*taille_table) ; z++)
-            {   if (z == 4*taille_table)
+    printf("---");
+    for (z=0 ; z<=(taille_separateur*taille_table) ; z++)
+            {   if (z == taille_separateur*taille_table)
                     {printf("-\n") ;}
                 else
                     {printf("-") ;}
         }
     // Construction des lignes suivantes
     for (i=1 ; i<=taille_table ; i++)
-    {   printf("%2d  |", i);
+    {   printf("%2d |", i);
+    
         for (y=1; y<=taille_table; y++)
-        {   if (y == taille_table)
-                {   printf("%4d\n", i*y);
-                    printf("----");
-                    for (z=0 ; z<=(4*taille_table) ; z++)
-                            {   if (z == 4*taille_table)
+        {   if (y == taille_table) // Construction du séparateur entre les lignes
+                {   printf("%3d |\n", i*y);
+                    printf("---");
+                    for (z=0 ; z<=(taille_separateur*taille_table) ; z++)
+                            {   if (z == taille_separateur*taille_table)
                                     {printf("-\n") ;}
                                 else
                                     {printf("-") ;}
                         }
                 }
             else
-                {printf("%4d", i*y);}
+                {printf("%3d |", i*y);}
         }
 
     }
 
 }
-*/
+// */
