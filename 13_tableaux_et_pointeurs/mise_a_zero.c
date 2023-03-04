@@ -23,6 +23,6 @@ int main()
     for (i=0 ; i<CONSTANTE ; i++) printf("t[%d] = %d\n", i, t[i]) ; // affichage du tableau remis à 0
     printf("Nombre de type double = %f.\n", nb_double);
     remise_a_zero_zone_ou_objet(&nb_double, sizeof(double)) ; // mise à zéro
-    printf("Nombre de type double = %f mise à 0.\n", nb_double) ;
+    printf("Nombre de type double = %f mis à 0.\n", nb_double) ;
 }
 

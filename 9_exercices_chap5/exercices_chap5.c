@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int main()
+{}
 // Programme original avec boucle "for"
 /*
 {
@@ -153,7 +154,7 @@ for (i=0 ; i<max ; i++)
 
 
 
-// /*
+/*
 // Table de multiplication de 1 à 10
 {   int taille_table, i, y, z, actuel_x, actuel_y, taille_separateur ;
     actuel_x = 0 ;
@@ -199,4 +200,4 @@ for (i=0 ; i<max ; i++)
     }
 
 }
-// */
+*/
