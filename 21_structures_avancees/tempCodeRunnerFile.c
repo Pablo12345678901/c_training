@@ -1,0 +1,1 @@
+(*renvoi_adresse_struct)

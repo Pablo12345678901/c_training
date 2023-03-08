@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int main()
     {   struct personne    {    char nom[20] ;
                                 char prenom[20];
