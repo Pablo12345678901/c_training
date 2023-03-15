@@ -20,6 +20,7 @@
         "unordered_map": "c",
         "vector": "c",
         "stdio.h": "c",
-        "exercices_chap5": "c"
+        "exercices_chap5": "c",
+        "iterator": "c"
     }
 }
