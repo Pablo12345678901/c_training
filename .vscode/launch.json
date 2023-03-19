@@ -8,7 +8,7 @@
             "name": "(lldb) Lancer",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/29_debug/fichier_simple_pr_debug", // adapter ici le nom du path et fichier sans l'extension
+            "program": "${workspaceFolder}/31_proche_langage_machine/operateurs_decalage", // adapter ici le nom du path et fichier sans l'extension
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
