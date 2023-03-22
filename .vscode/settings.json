@@ -21,6 +21,7 @@
         "vector": "c",
         "stdio.h": "c",
         "exercices_chap5": "c",
-        "iterator": "c"
+        "iterator": "c",
+        "stdlib.h": "c"
     }
 }
