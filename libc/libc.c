@@ -52,6 +52,17 @@ int main()
     { printf("Letter %d : %c\n", i, *(ptr_username++)) ;
   }
   printf("\n") ; /* Esthetic */
+
+  int user_user_id , game_user_id ;
+  user_user_id = getuid ();
+  printf("user_user_id = %d\n", user_user_id) ;
+  game_user_id = geteuid ();
+  printf("game_user_id = %d\n", game_user_id) ;
+
+  /* Deleting a file */
+  char * path_tmp_file =  "/home/incognito/Desktop/dev/c_training/libc/libc.o" ;
+  printf("\nDeleting the file located \"%s\".\n", path_tmp_file) ; 
+  unlink(path_tmp_file) ;
   
   /* Showing user that everything went well until the end. */
   printf("\nEnd of script.\n") ;
