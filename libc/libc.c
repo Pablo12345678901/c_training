@@ -19,6 +19,7 @@
 #include <grp.h>
 #include <limits.h>
 #include <pwd.h>
+#include <regex.h>
 #include <signal.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -83,6 +84,57 @@ int main()
   strcat(ptr_enhanced, ptr_dummy_second) ;
   printf("Now, strcat concatenante the ptr_enhanced with the second pointer and its value is now : \n\"%s\".\n", ptr_enhanced) ;
   free(ptr_enhanced) ; /* Freeing memory */
+
+  /* REGEX */
+  regex_t regex;
+  int reti;
+  char msgbuf[100];
+  /* char * string_tested = "abc" ; */
+  /* char * string_tested = "abc" ; */
+  char * string_tested = "tabc" ; 
+  /* char * regex_str = "a[[:alnum:]]" ; */
+  char * regex_str = "^a[[:alnum:]]" ; /* For tests */
+
+  /* Compile regular expression and test returned value */
+  reti = regcomp(&regex, regex_str, 0);
+  if (reti) {
+    fprintf(stderr, "\nCould not compile regex\n");
+    exit(1);
+  }
+
+  /* Execute regular expression */
+  reti = regexec(&regex, string_tested, 0, NULL, 0);
+  if (!reti) {
+    printf("\nYES : The regex \"%s\" matched within the string \"%s\"! \n", regex_str, string_tested);
+  }
+  else if (reti == REG_NOMATCH) {
+    printf("\nNO : The regex \"%s\" did not match within the string \"%s\"...\n", regex_str, string_tested);
+  }
+  else {
+    regerror(reti, &regex, msgbuf, sizeof(msgbuf));
+    fprintf(stderr, "Regex match failed: %s\n", msgbuf);
+    exit(1);
+  }
+
+  /* Free memory allocated to the pattern buffer by regcomp() */
+  regfree(&regex);
+
+  /* Parsing numbers */
+  char * number_str = "165abc" ;
+  char * tail_not_matching_number ;
+  long number_long_int = strtol (number_str, &tail_not_matching_number, 0) ; /* Base 0 = decimal */
+  number_long_int++ ;
+
+  int length_of_tail = strlen(tail_not_matching_number) ;
+  if ( length_of_tail == 0)
+    {
+      ; printf("\nThe number which string is \"%s\" is now equivalent to a long int %ld.\n", number_str, number_long_int) ;
+    }
+  else
+    {
+      	printf("\nERROR: syntax: \"%s\" was found in the string \"%s\". It should not be there.\n", tail_not_matching_number, number_str) ;
+    }
+
   
   /* Showing user that everything went well until the end. */
   printf("\nEnd of script.\n") ;
