@@ -26,15 +26,6 @@
 #include <sys/times.h>
 #include <termios.h>
 
-/*
- To define later.
-*/
-
-/*
-  Enhancements :
-  - .
-*/
-
 int main()
 {
   int i ; /* Used in several loops */
