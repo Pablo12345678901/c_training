@@ -1,0 +1,6 @@
+This file contains questions that will be processed later.
+==========================================================
+
+- Where are defined the basic types 'int' and 'char' ? 
+
+- Where is defined '__noreturn__' (see '_exit' function within 'unistd.h') ?
