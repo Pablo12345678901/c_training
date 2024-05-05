@@ -1,6 +1,11 @@
 This file contains questions that will be processed later.
 ==========================================================
 
-- Where are defined the basic types 'int' and 'char' ? 
+- Where are the generic C library files (from the C language - the MAIN ones - not libc ones - as for example 'stdarg.h') ?
+
+- How is the C language interpreted by the compiler ?
+- How does the compiler know the meaning of the C keywords ?
+- Where are the keywords defined ?
+- Where are defined the basic types 'int' and 'char' ?
 
 - Where is defined '__noreturn__' (see '_exit' function within 'unistd.h') ?
