@@ -36,7 +36,7 @@ printf_simulation(int dummy_first_arg, ...)
     int message_total_length = 1; /* room for NULL */
     int number_of_arguments = 0 ; /* Counter for arguments */
     
-    /* Initialize the list of arguments by providing the first one */
+    /* Initialize the list of arguments by providing the last of the required (and therefore non-optional) argument */
     va_start(variable_number_arguments_list, dummy_first_arg); 
 
     /* Get the size of the argument list = sum of size of each arguments = sum of char numbers */
