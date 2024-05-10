@@ -19,3 +19,9 @@ This file contains questions that will be processed later.
 - Where are defined the basic types 'int' and 'char' ?
 
 - Where is defined '__noreturn__' (see '_exit' function within 'unistd.h') ?
+- Where is defined the word (or macro or else) 'type' (used in stddef.h in libc) ?
+
+- How to create a dynamic variable name, for example : I want to loop on an array of variable names and get their value -> how to do it ?
+      Array = [ "char", "int"]
+      I want to get the sizeof(char) and sizeof(int).
+      See the file "types_and_number_of_bits.c" to loop on array of all types to get their size.
