@@ -1,6 +1,12 @@
 This file contains questions that will be processed later.
 ==========================================================
 
+SOURCE CODE
+- Where are the keywords defined ?
+- Where are defined the basic types 'int' and 'char' ?
+- Where is defined '__noreturn__' (see '_exit' function within 'unistd.h') ?
+- Where is defined the word (or macro or else) 'type' (used in stddef.h in libc) ?
+- Where are defined the types 'valist' (see variadic functions) ?
 - Where are the generic C library files (from the C language - the MAIN ones - not libc ones - as for example 'stdarg.h') ?
 - Where are defined - and what is the code behing (are they libc functions ?) - basic functions as ?
   	- 'exec'
@@ -11,17 +17,12 @@ This file contains questions that will be processed later.
 	- 'putc'
 	- 'scanf'
 
-- Where are defined the types 'valist' (see variadic functions) ?
-
-- How is the C language interpreted by the compiler ?
-- How does the compiler know the meaning of the C keywords ?
-- Where are the keywords defined ?
-- Where are defined the basic types 'int' and 'char' ?
-
-- Where is defined '__noreturn__' (see '_exit' function within 'unistd.h') ?
-- Where is defined the word (or macro or else) 'type' (used in stddef.h in libc) ?
-
+DYNAMIC CODE
 - How to create a dynamic variable name, for example : I want to loop on an array of variable names and get their value -> how to do it ?
       Array = [ "char", "int"]
       I want to get the sizeof(char) and sizeof(int).
       See the file "types_and_number_of_bits.c" to loop on array of all types to get their size.
+- How to adapt dynamically the format of printf output ? For example, I want to align some string outputted but I want that they align all length depending on the largest one - and I do not already know how many char it will contains ?
+
+COMPILER
+- How is the C language interpreted by the compiler ? How does the compiler know the meaning of the C keywords ?
