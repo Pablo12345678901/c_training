@@ -56,7 +56,7 @@ int main()
   printf("Length      : %5hd\n", length_string_array) ;
   printf("Size object : %5hd\n", size_string_array) ;
   printf("Size ptr    : %5hd\n", size_ptr_string_array) ;
-  printf("") ; /* Esthetic */
+  printf("\n") ; /* Esthetic */
 
   /* short security_max_length = 25 ; */ /* Toggle test values */
   short security_max_length = 15 ; /* Toggle test values */

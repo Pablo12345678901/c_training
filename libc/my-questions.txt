@@ -25,5 +25,21 @@ DYNAMIC CODE
 - How to adapt dynamically the format of printf output ? For example, I want to align some string outputted but I want that they align all length depending on the largest one - and I do not already know how many char it will contains ?
 - How to evaluate an expression placed within a string ? Example : I want to evaluate a string that does "int result = 2 * 2 * ... * 2" and multiply 2 a N number of times so I need to loop N times to create the string that will then be evaluated. 
 
+===============================================
+NOTES
+
 COMPILER
-- How is the C language interpreted by the compiler ? How does the compiler know the meaning of the C keywords ?
+Phases of compilation :
+0.     	  	      -> input  = .c file
+1.     Pre-processing -> output =  .i file
+2.     Compilation    -> output = .s file
+3.     Assembly       -> output = .o file
+4.     Linking 	      -> output = executable
+
+USEFUL GCC OPTIONS
+-o OUTPUTFILENAME
+-save-temps : keep the temporary files outputted by each step of the compilation.
+-Wall : enables all compiler’s warning messages. This option is recommended to generate better code.
+
+
+===============================================

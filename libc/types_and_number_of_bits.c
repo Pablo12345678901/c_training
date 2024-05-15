@@ -34,13 +34,13 @@ int main(int ARGC, char *ARGV[])
   short int number_of_bits_used_for_type_signed_char = sizeof (signed char) * CHAR_BIT ;
   short int number_of_bits_used_for_type_char = sizeof (char) * CHAR_BIT ;
   short int number_of_bits_used_for_type_short_int = sizeof (short int) * CHAR_BIT ;
-  short int number_of_bits_used_for_type_unsigned_short_int = sizeof (unsigned short int) * CHAR_BIT ;
+  short int number_of_bits_used_for_type_short_unsigned_int = sizeof (short unsigned int) * CHAR_BIT ;
   short int number_of_bits_used_for_type_int = sizeof (int) * CHAR_BIT ;
   short int number_of_bits_used_for_type_unsigned_int = sizeof (unsigned int) * CHAR_BIT ;
-  short int number_of_bits_used_for_type_signed_long_int =  sizeof (signed long int) * CHAR_BIT ;
-  short int number_of_bits_used_for_type_unsigned_long_int =  sizeof (unsigned long int) * CHAR_BIT ;
-  short int number_of_bits_used_for_type_signed_long_long_int =  sizeof (signed long long int) * CHAR_BIT ;
-  short int number_of_bits_used_for_type_unisigned_long_long_int =  sizeof (unsigned long long int) * CHAR_BIT ;
+  short int number_of_bits_used_for_type_long_signed_int =  sizeof (long signed int) * CHAR_BIT ;
+  short int number_of_bits_used_for_type_long_unsigned_int =  sizeof (long unsigned int) * CHAR_BIT ;
+  short int number_of_bits_used_for_type_long_long_signed_int =  sizeof (long long signed int) * CHAR_BIT ;
+  short int number_of_bits_used_for_type_long_long_unsigned_int =  sizeof (long long unsigned int) * CHAR_BIT ;
   /* Float and double */
   short int number_of_bits_used_for_type_float =  sizeof (float) * CHAR_BIT ;
   short int number_of_bits_used_for_type_double =  sizeof (double) * CHAR_BIT ;
@@ -59,17 +59,17 @@ int main(int ARGC, char *ARGV[])
   printf("%22s : min %20d - max %20d on %3u bits. \n", "unsigned char", 0, UCHAR_MAX, number_of_bits_used_for_type_unsigned_char) ;
   printf("%22s : min %20d - max %20d on %3u bits. \n", "char", CHAR_MIN, CHAR_MAX, number_of_bits_used_for_type_char) ;
   printf("%22s : min %20d - max %20d on %3u bits. \n", "short int", SHRT_MIN, SHRT_MAX, number_of_bits_used_for_type_short_int) ;
-  printf("%22s : min %20d - max %20d on %3u bits. \n", "unsigned short int", 0, USHRT_MAX, number_of_bits_used_for_type_unsigned_short_int) ;
+  printf("%22s : min %20d - max %20d on %3u bits. \n", "short unsigned int", 0, USHRT_MAX, number_of_bits_used_for_type_short_unsigned_int) ;
 
   /* min and max value are of the same type of their type name */
   printf("\n") ; /* Esthetic */
   printf("The below types min/max values are placed within the same type as the type name. \n") ;
   printf("%22s : min %20d - max %20d on %3u bits. \n", "int", INT_MIN, INT_MAX, number_of_bits_used_for_type_int) ;
   printf("%22s : min %20u - max %20u on %3u bits. \n", "unsigned int", 0, UINT_MAX, number_of_bits_used_for_type_unsigned_int) ;
-  printf("%22s : min %20ld - max %20ld on %3u bits. \n", "signed long int", LONG_MIN, LONG_MAX, number_of_bits_used_for_type_signed_long_int) ;
-  printf("%22s : min %20lu - max %20lu on %3u bits. \n", "unsigned long int", 0, ULONG_MAX, number_of_bits_used_for_type_unsigned_long_int) ;
-  printf("%22s : min %20Ld - max %20Ld on %3u bits. \n", "signed long long int", LLONG_MIN, LLONG_MAX, number_of_bits_used_for_type_signed_long_long_int) ;
-  printf("%22s : min %20Lu - max %20Lu on %3u bits. \n", "unsigned long long int", 0, ULLONG_MAX, number_of_bits_used_for_type_unsigned_long_int) ;
+  printf("%22s : min %20ld - max %20ld on %3u bits. \n", "long signed int", LONG_MIN, LONG_MAX, number_of_bits_used_for_type_long_signed_int) ;
+  printf("%22s : min %20lu - max %20lu on %3u bits. \n", "long unsigned int", 0lu, ULONG_MAX, number_of_bits_used_for_type_long_unsigned_int) ;
+  printf("%22s : min %20Ld - max %20Ld on %3u bits. \n", "long long signed int", LLONG_MIN, LLONG_MAX, number_of_bits_used_for_type_long_long_signed_int) ;
+  printf("%22s : min %20Lu - max %20Lu on %3u bits. \n", "long long unsigned int", 0Lu, ULLONG_MAX, number_of_bits_used_for_type_long_long_unsigned_int) ;
   printf("%22s : min %20e - max %20e on %3u bits. \n", "float", FLT_MIN, FLT_MAX, number_of_bits_used_for_type_float) ;
   printf("%22s : min %20le - max %20le on %3u bits. \n", "double", DBL_MIN, DBL_MAX, number_of_bits_used_for_type_double) ;
   printf("%22s : min %20Le - max %20Le on %3u bits. \n", "long double", LDBL_MIN, LDBL_MAX, number_of_bits_used_for_type_long_double) ;
@@ -102,7 +102,7 @@ int main(int ARGC, char *ARGV[])
   for (i=1; i<=FLT_MANT_DIG; i++)
     { float power_from_int_to_float = (float) i ;
       float result_for_each_step = 1.0f + (1.0f / powf(radix,power_from_int_to_float)) ;
-      printf("The result of : \n1.0f + \n1.0f / %f ^ %d \n= %f \n", i, radix, result_for_each_step) ;
+      printf("The result of : \n1.0f + \n1.0f / %d ^ %d \n= %f \n", i, (int)radix, result_for_each_step) ;
       printf("\n") ; /* Esthetic */
     }
   
