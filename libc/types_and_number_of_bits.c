@@ -12,6 +12,7 @@
 #include <math.h> /* WARNING :
 		     'gcc' compilation with '-lm' option is required to precise that the 'libm' has to be included as it is not part of 'libc' */
 #include <stdarg.h>
+#include <stddef.h> /* For 'offsetof' macro */
 /* Libc libraries */
 #include <float.h> /* As limits.h but for float numbers */
 #include <grp.h>
@@ -105,6 +106,29 @@ int main(int ARGC, char *ARGV[])
       printf("The result of : \n1.0f + \n1.0f / %d ^ %d \n= %f \n", i, (int)radix, result_for_each_step) ;
       printf("\n") ; /* Esthetic */
     }
+
+  /* Structs */
+  struct int_and_string
+  { int value_int ;
+    char * ptr_to_string ;
+  } ;
+  printf("Print information about location of fields within the struct...\n") ;
+  printf("\n") ; /* Esthetic */
+  int offsetof_field_value_int_within_struct = offsetof(struct int_and_string, value_int) ;
+  int offsetof_field_ptr_to_string_within_struct = offsetof(struct int_and_string, ptr_to_string) ;
+  printf("The offset of the field \"%s\" within the struct of type \"%s\" is : %d. \n", "value_int", "int_and_string", offsetof_field_value_int_within_struct) ;
+  printf("The offset of the field \"%s\" within the struct of type \"%s\" is : %d. \n", "ptr_to_string", "int_and_string", offsetof_field_ptr_to_string_within_struct) ;
+  /* Initialisation of objects and fields */
+  struct int_and_string first_struct ;
+  first_struct.value_int = 10 ;
+  first_struct.ptr_to_string = "first struct" ;
+  struct int_and_string second_struct ;
+  second_struct.value_int = 20 ;
+  second_struct.ptr_to_string = "second struct" ;
+  /* Print pretty messages */
+  printf("\n") ; /* Esthetic */
+  printf("The first  object of type \"%s\" has the value %d and the name \"%s\". \n", "int_and_string", first_struct.value_int, first_struct.ptr_to_string) ;
+  printf("The second object of type \"%s\" has the value %d and the name \"%s\". \n", "int_and_string", second_struct.value_int, second_struct.ptr_to_string) ;
   
   /* Showing user that everything went well until the end. */
   printf("\nEnd of script.\n") ;
