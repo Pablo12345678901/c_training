@@ -1,0 +1,54 @@
+COMPILATION - GENERAL
+- Compilation is the translation of human-readable code into machine understandable code (binary instructions : 0101...11011).
+- It has 4 steps (see below).
+- If an error occurs in one of them, the process will not continue.
+
+PHASES
+0.     	  	      -> input  = .c file
+
+1.     Pre-processing -> output =  .i file
+       		      This phase prepares the code for further compilation.
+       		      Steps processed :
+       		      - Removal of Comments
+    		      - Expansion of Macros
+			      - Macro after '#define' directives are replaced by their content.
+    		      - Expansion of the included files
+			      - Files after the '#include' directives are :
+				      - The included files are searched...
+				      - Their path printed...
+				      - and their content added before the main code (which will stay on the bottom of the file).
+    		      - Conditional compilation
+		      	      - The blocks of code after/within directirves '#ifdef', '#ifndef', '#if', '#elif', '#endif' are - or not - added depending on conditions.
+
+2.     Compilation    -> output = .s file
+       		      The .s file is in assembly-level instructions.
+		      
+3.     Assembly       -> output = .o file
+       		      .s is taken as input and turned into filename.o by the assembler.
+		      This file contains machine-level instructions.
+		      At this phase, only existing code is converted into machine language, and the function calls like printf() are not resolved.
+
+4.     Linking 	      -> output = executable
+       		      All the linking of function calls with their definitions is done.
+		      Linker knows where all these functions are implemented.
+		      Linker does some extra work also, it adds some extra code to our program which is required when the program starts and ends.
+		      For example, there is a code that is required for setting up the environment like passing command line arguments
+
+USEFUL GCC OPTIONS
+--help : summarize some options listed below.
+
+-o OUTPUTFILENAME : precise the name of outputted executable file.
+
+-lLIBRARYNAME : enable the linking against a specific library during the compilation.
+	      -lm : compile against the math library (not included within glibc - contains math.h).
+
+-save-temps : keep the temporary files outputted by each step of the compilation.
+
+-v : Display the programs (and path) invoked by the compiler.
+
+-Wall : enables all compiler’s warning messages. This option is recommended to generate better code.
+
+To get a more precise control of the each phase of the compilation :
+-E : Preprocess only; do not compile, assemble or link.
+-S : Compile only; do not assemble or link.
+-c : Compile and assemble, but do not link.
