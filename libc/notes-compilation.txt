@@ -1,40 +1,70 @@
 COMPILATION - GENERAL
-- Compilation is the translation of human-readable code into machine understandable code (binary instructions : 0101...11011).
-- It has 4 steps (see below).
-- If an error occurs in one of them, the process will not continue.
+
+- Compilation is the translation of human-readable code into machine understandable code = instructions in the form of binary code "0101...11011".
+- It has 4 steps (see detail below) : 'Pre-processing', 'compilation', 'assembly' and 'linking'.
+- If an error occurs in one of them, the process will stop with the printing of a warning.
+
+==========================================================
+
+LIBRARY FILES
+
+- Library files pre-compiled pieces of code (variables, functions, ...) that have been packaged for use across multiple platforms.
+- There are two types of library files : static and dynamic libraries. They are used for static and dynamic linking.
+
+==========================================================
 
 PHASES
-0.     	  	      -> input  = .c file
 
-1.     Pre-processing -> output =  .i file
-       		      This phase prepares the code for further compilation.
-       		      Steps processed :
-       		      - Removal of Comments
-    		      - Expansion of Macros
-			      - Macro after '#define' directives are replaced by their content.
-    		      - Expansion of the included files
-			      - Files after the '#include' directives are :
-				      - The included files are searched...
-				      - Their path printed...
-				      - and their content added before the main code (which will stay on the bottom of the file).
-    		      - Conditional compilation
-		      	      - The blocks of code after/within directirves '#ifdef', '#ifndef', '#if', '#elif', '#endif' are - or not - added depending on conditions.
+----------------------------------------------------------
 
-2.     Compilation    -> output = .s file
-       		      The .s file is in assembly-level instructions.
-		      
-3.     Assembly       -> output = .o file
-       		      .s is taken as input and turned into filename.o by the assembler.
-		      This file contains machine-level instructions.
-		      At this phase, only existing code is converted into machine language, and the function calls like printf() are not resolved.
+1. PRE-PROCESSING
 
-4.     Linking 	      -> output = executable
-       		      All the linking of function calls with their definitions is done.
-		      Linker knows where all these functions are implemented.
-		      Linker does some extra work also, it adds some extra code to our program which is required when the program starts and ends.
-		      For example, there is a code that is required for setting up the environment like passing command line arguments
+	  Take a '.c' input file and prepares the code for further compilation :
+	  - Removal of Comments
+	  - Expansion of Macros
+		  - Macro after '#define' directives are replaced by their content.
+	  - Expansion of the included files
+		  - Files after the '#include' directives are searched, their path printed and their content added before the main code which will stay on the bottom of the file.
+	  - Conditional compilation
+		  - The blocks of code after/within directives '#ifdef', '#ifndef', '#if', '#elif', '#endif' are added - or not - depending on conditions.
+
+	  -> output = '.i' file = expanded code
+
+----------------------------------------------------------
+
+2. COMPILATION
+
+	  Parse the pre-processed file and check any syntax error.
+	  Stop at the first one with the print of a warning.
+	  If no error is found, converts the file content into assembly-level code.
+
+	  -> output = '.s' file = assembly code
+
+----------------------------------------------------------
+
+3. ASSEMBLY
+
+	  At this phase, the assembly code is converted into machine language (binary code) by the assembler.
+	  Function calls like printf() are not resolved - will be later.
+
+	  -> output = '.o' file = object code
+
+----------------------------------------------------------
+
+4. LINKING
+
+	  - The linker adds library files (see definition above) and other custom object files ('.o' files) to the program before creating an executable file.
+	  - After assembly phase, some statements / symbols are not understandable by my machine so it is needed.
+	  - This linking phase include replacing function calls by their definitions. The linker knows where all these functions are implemented.
+	  - The linker checks for logic and data errors. Stop at the first one with the print of a warning.
+      	  - The linker also adds some extra code to our program which is required when the program starts and ends. For example, there is a code that is required for setting up the environment for passing command line arguments.
+
+	  -> output = executable code
+
+==========================================================
 
 USEFUL GCC OPTIONS
+
 --help : summarize some options listed below.
 
 -o OUTPUTFILENAME : precise the name of outputted executable file.
@@ -52,3 +82,5 @@ To get a more precise control of the each phase of the compilation :
 -E : Preprocess only; do not compile, assemble or link.
 -S : Compile only; do not assemble or link.
 -c : Compile and assemble, but do not link.
+
+==========================================================
