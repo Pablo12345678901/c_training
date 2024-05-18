@@ -1,5 +1,4 @@
 /* Macro */
-#define _POSIX_SOURCE 0
 #define _POSIX_C_SOURCE 200809L
 #define _LARGEFILE_SOURCE
 #define _LARGEFILE64_SOURCE
@@ -7,25 +6,13 @@
 #define _ISOC11_SOURCE
 #define _GNU_SOURCE
 /* Standard libraries */
-#include <stdarg.h>
-#include <stdio.h> 
-#include <stdlib.h>
-#include <time.h>  
-#include <unistd.h>
+#include <stdarg.h> /* ARGC, ARGV[] */
+#include <stdio.h> /* Printf */
+#include <stdlib.h> /* malloc and other memory functions */
 /* Libc libraries */
 #include <assert.h> /* Asserting expression and exit if error occurs */
-#include <dirent.h>
 #include <errno.h> /* Error management */
-#include <fcntl.h>
-#include <grp.h>
-#include <limits.h>
-#include <pwd.h>
-#include <regex.h>
-#include <signal.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <sys/times.h>
-#include <termios.h>
+#include <string.h> /* 'str...' functions */
 
 void print_errno(void)
 { /* The errno code is stocked within the variable errno */
@@ -43,6 +30,9 @@ void print_errno(void)
 
 int main(int ARGC, char *ARGV[])
 {
+  /* Showing user the beggining of script - because if gcc is provided the '-v' option, a lot of output is written before script. */
+  printf("\nStart of script.\n") ;
+
   /* Set errno to 0 before using specific functions as for example : 'sqrt' or 'atan' */
   errno = 0 ;
   /* From (g)libc : 
