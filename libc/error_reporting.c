@@ -12,6 +12,8 @@
 /* Libc libraries */
 #include <assert.h> /* Asserting expression and exit if error occurs */
 #include <errno.h> /* Error management */
+#include <limits.h> /* Some system limits as 'PATH_MAX' */
+#include <sys/resource.h> /* Some resources system limits */
 #include <string.h> /* 'str...' functions */
 
 void print_errno(void)
@@ -62,6 +64,26 @@ int main(int ARGC, char *ARGV[])
       /* If non zero 'errno' is provided to assert_perror, error message is show and 'Aborted' is printed on the next line. */
       assert_perror(errno) ;
     }
+
+
+  printf("\nPrinting some limits than can cause error if not respected...\n") ;
+  /* "-- Macro: int EMFILE
+     “Too many open files.” The current process has too many files open
+     and can’t open any more.  Duplicate descriptors do count toward
+     this limit." */
+  printf("\nThe maximum number of open files that the current process can manage without launching 'EMFILE' error is : \nRLIMIT_NOFILE = %d \n", RLIMIT_NOFILE) ;
+  /* -- Macro: int PATH_MAX
+     The uniform system limit (if any) for the length of an entire file
+     name (that is, the argument given to system calls such as ‘open’),
+     including the terminating null character.
+     *Portability Note:* The GNU C Library does not enforce this limit
+     even if ‘PATH_MAX’ is defined. */
+  printf("\nThe maximum size of a path should theorically be PATH_MAX = %d chars\nHowever, on the GNU system, it is not enforced even if limit is set. \n", PATH_MAX) ;
+  /* ‘RLIMIT_NPROC’
+     The maximum number of processes that can be created with the same
+     user ID. If you have reached the limit for your user ID, ‘fork’
+     will fail with ‘EAGAIN’.  *Note Creating a Process::. */
+  printf("\nThe maximum number of processes that can be created with the same user ID is RLIMIT_NPROC = %d \n", RLIMIT_NPROC) ;
   
   /* Showing user that everything went well until the end. */
   printf("\nEnd of script.\n") ;
