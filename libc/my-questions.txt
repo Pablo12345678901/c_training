@@ -4,7 +4,8 @@ This file contains questions that will be processed later.
 AAA. GENERAL
 ----------------------------------------------------------
 
-- I am here : 2.3 Error Messages
+- I am here : 2.3 Error Messages ->  -- Function: const char * strerrorname_np (int ERRNUM)
+
 - The question are not sorted by priority / importance and should be before processing. Same for the categories.
 - However, the categories are sorted by alphabetical order and, if possible, some questions (or points within questions) too.
 
