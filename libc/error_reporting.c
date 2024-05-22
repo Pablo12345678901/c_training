@@ -12,6 +12,7 @@
 /* Libc libraries */
 #include <assert.h> /* Asserting expression and exit if error occurs */
 #include <errno.h> /* Error management */
+#include <error.h> /* Error management */
 #include <limits.h> /* Some system limits as 'PATH_MAX' */
 #include <sys/resource.h> /* Some resources system limits */
 #include <string.h> /* 'str...' functions */
@@ -63,7 +64,7 @@ int main(int ARGC, char *ARGV[])
       printf("\nSet manually the errno to %d and then call 'assert_perror' that will print an error message (only if errno <> 0) before exiting.\n", errno) ;
 
       /* The var 'program_invocation_short_name' shows the program from which came the error. */
-      printf("\nThe program from which the error came is within the variable \"%s\" which value is \"%s\". \n", "program_invocation_short_name", program_invocation_short_name) ;
+      printf("\nThe program from which the error came is within the variable \"%s\" which value is \"%s\" and its short (=basename) name is \"%s\" (from variable \"%s\"). \n", "program_invocation_name", program_invocation_name, program_invocation_short_name, "program_invocation_short_name") ;
       
       /* If non zero 'errno' is provided to assert_perror, error message is show and 'Aborted' is printed on the next line. */
       assert_perror(errno) ;
@@ -97,16 +98,26 @@ int main(int ARGC, char *ARGV[])
 
   printf("\n") ; /* Esthetic */
   perror("This customized message was added by the function 'perror' before the error returned by the strerror from the 'errno' value and can be useful to print a customized message before the error 'kind' within an error message. Such as the one of 'assert_perror(errno)' in the format 'PROGRAM: FILE:LINE-NUMBER: FUNCTION: CUSTOMIZED-MESSAGE: ERROR-KIND'") ; /* Example of message returned by 'assert_perror(errno)' :
-							  compiled-file: error_reporting.c:69: main: Unexpected error: Operation not permitted. */
+							  compiled-file: error_reporting.c:69: main: Unexpected error: Operation not permitted */
   printf("\n") ; /* Esthetic */
   errno = 0 ; /* Re-set to clean state */
   
   /* Looping to show the error description for each error code known */
   int error_code_max = 133 ; /* 240522 : Max error code = 133 */
   for (errno=0; errno<error_code_max ; errno++)
-    { printf("Error code : %3d - Description : %15s - Message : %50s \n", errno, strerrorname_np(errno), strerror(errno)) ;
+    { /* strerrorname_np(errno) = Description -> Example : 'EPERM'
+	 strerror(errno)) = Message -> Example : 'Operation not permitted' */
+      printf("Error code : %3d - Description : %15s - Message : %50s \n", errno, strerrorname_np(errno), strerror(errno)) ;
     }
   errno = 0 ; /* Re-set to clean state */
+
+  /* If errno is different than 0, print a formatted message and exits. */
+  /* errno = 2 ; */ /* Play with the error code here to see a formatted message appears. */
+  if (errno != 0)
+    { printf("\n") ; /* Esthetic */
+      error(1, errno, "%s : %s", "This is an error function that exits.", "Any format (with variables \%s) can be implemented as in 'printf'") ;
+    }
+
   
   /* Showing user that everything went well until the end. */
   printf("\nEnd of script.\n") ;
