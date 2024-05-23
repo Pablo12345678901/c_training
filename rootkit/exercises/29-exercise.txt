@@ -1,0 +1,5 @@
+# LAST EXERCISE FOR MYSELF TO FINISH THIS JOB :
+
+Re-read the author documentation on this tutorial to finalize the training :
+
+https://h0mbre.github.io/Learn-C-By-Creating-A-Rootkit/
