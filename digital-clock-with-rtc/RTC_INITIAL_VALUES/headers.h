@@ -1,10 +1,4 @@
-/*
- * headers.h
- *
- *  Created on: ??þ/??þ/????
- *      Author: DELL
- */
-
+/* headers.h */
 #ifndef HEADERS_H_
 #define HEADERS_H_
 
@@ -16,5 +10,9 @@
 
 #include <avr/io.h>  /* AVR device-specific IO definitions */
 #include <util/delay.h> /* Convenience functions for busy-wait delay loops */
+#include <avr/interrupt.h> /* Interrupts */
+
+/* Where is this type defined ? */
+typedef void(*fn_ptr)(void) ; 
 
 #endif /* HEADERS_H_ */
