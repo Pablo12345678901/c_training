@@ -12,7 +12,7 @@
 
 int main()
 {
-	RTC_SET_TIME(0x12,0x01,0x17);
-	while(1); /* Infinite loop */
+	RTC_SET_TIME(0x12,0x01,0x17) ;
+	while(1) ; /* Infinite loop */
 }
 
