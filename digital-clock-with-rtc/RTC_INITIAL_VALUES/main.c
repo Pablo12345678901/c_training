@@ -5,21 +5,10 @@
  *      Author: DELL
  */
 #include "headers.h" /* Includes headers from AVR-Libc :
-			https://github.com/avrdudes/avr-libc
-		      
-			#include <avr/io.h> 
-			#include <util/delay.h>
+			- Doc : https://www.nongnu.org/avr-libc/user-manual/modules.html
+			- Project : https://github.com/avrdudes/avr-libc
 		     */
-#include "RTC.h" /* Include a header (which in turn includes some MACROS and some prototypes) and some prototypes.
-		    
-		    #include "TWI.h"
-
-		    void RTC_SET_TIME(unsigned char sec,unsigned char min,unsigned char hour);
-		    void RTC_SET_DATE(unsigned char day,unsigned char month,unsigned char year);
-		    void RTC_GET_TIME();
-		    void RTC_GET_DATE();
-		    void decimal_to_hexa(unsigned char* number);
-		 */
+#include "RTC.h" /* Include a header ("TWI.h", which in turn includes some MACROS and some prototypes) and some prototypes. */
 
 int main()
 {
