@@ -20,10 +20,6 @@ It is aimed to train myself with 'C' programming and gain experience in:
 
 But before all... FOR FUN !
 
-Architecture :
-- The original source code is available under the 'source-code' directory.
-- My code is available under the 'dev' directory.
-
 ---------------------------------------------------------
 
 ORIGINAL README CONTENT
