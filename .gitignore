@@ -1,3 +1,6 @@
 # Ignore all temporary files created by emacs.
 *~*
 *#*
+
+# Ignore all source code content under 'source-code' directories.
+*/source-code/
