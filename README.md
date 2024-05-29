@@ -4,7 +4,7 @@
 ***  _________________________________________  ***
 *** |					      | ***
 *** |	"Ideas on how to enhance C skills,    | ***
-*-* |	having fun and playing with low-level | ***
+*** |	having fun and playing with low-level | ***
 *** |	C code, adviced by IA."	    	      | ***
 *** |_________________________________________| ***
 ***                                             ***
