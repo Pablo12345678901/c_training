@@ -1,0 +1,6 @@
+Useful information :
+- https://payatu.com/blog/learning-to-reverse-engineer-with-gdb/
+- https://habr.com/en/articles/551500/
+- https://www.retroreversing.com/tutorials/gdb-reversing
+- https://dev.to/rootsec1/reverse-engineering-binaries-using-gdb-2bhc
+- https://www.youtube.com/watch?v=mYY6xHBo4zg
