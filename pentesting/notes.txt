@@ -1,0 +1,18 @@
+List of interesting projects to study source code in C :
+--------------------------------------------------------------------
+
+- hashcat :
+  Description :
+  	      hashcat is the world's fastest and most advanced password recovery utility, supporting five unique modes of attack for over 300 highly-optimized hashing algorithms. hashcat currently supports CPUs, GPUs, and other hardware accelerators on Linux, Windows, and macOS, and has facilities to help enable distributed password cracking.
+  Source code :
+  	      https://github.com/hashcat/hashcat
+	      
+--------------------------------------------------------------------
+
+- thc-hydra :
+  Description :
+  	      This tool is a proof of concept code, to give researchers and security consultants the possibility to show how easy it would be to gain unauthorized access from remote to a system.
+  Source code :
+  	      https://github.com/vanhauser-thc/thc-hydra
+	      
+--------------------------------------------------------------------
