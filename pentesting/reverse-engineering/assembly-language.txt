@@ -1,0 +1,195 @@
+Those are my notes about assembly language.
+_________________________________________________________
+
+Current state :
+- analyzing 'crackme3' binary but a path is creating an issue '/lib64...' should be '/gnu/store/ln6hxqjvz6m9gdd9s97pivlqck7hzs99-glibc-2.35/lib/ld-linux-x86-64.so.2' but when replaced, it does not work. Should be recompiled but need the source code for this so trying another way.
+  GDB :
+  - analysing the content of 'check_password' function with 'gdb crackme3' -> 'disass main' -> 'disass check_password'
+    For this : reading :
+    - picture n3 of the 'gdb...' directory.
+    - 'strings' command --help and 'info' page to get strings from binary.
+    - 'info as' -> not reading in a specific place.
+  LTRACE :
+  - Studying this command line tool to perform actions like gdb if gdb does not provide enough information.
+_________________________________________________________
+
+Sources :
+ - info as ('As' is the GNU assembler)
+ - "Programming in assembly language tutorial from https://github.com/mschwartz/assembly-tutorial/README.md
+
+_________________________________________________________
+
+Commonly Used Instructions
+
+---------------------------------------------------------
+
+Aritmetic
+
+ADC - add a value, plus 
+ADD - add two registers together
+DEC - decrement by 1
+DIV - unsigned divide
+IDIV - signed divide
+IMUL - signed multiply
+INC - increment by 1
+MUL - unsigned multiply
+NEG - two's complement (multiply by -1)
+SBB - subtract with borrow (carry flag)
+SUB - subtract
+       Example : 0x0000000000400611 <+4>:	sub    $0x20,%rsp
+LEA - load effective address (formed by some expression / addressing mode) into register
+
+---------------------------------------------------------
+
+Boolean Algebra
+
+AND - logical AND to registers together
+NOT - one's complement (invert all the bits in the operand)
+OR - logical OR
+XOR - logical exclusive or
+TEST - logical compare
+
+---------------------------------------------------------
+
+Branching and Subroutines
+
+CALL - call a subroutine/function/procedure
+SYSCALL - call an OS function (Linux, Mac)
+ENTER - make stack from for procedure parameters
+LEAVE - high level procedure exit
+RET - return from subroutine
+CMP - compare two operands
+JA - jump if result of unsigned compare is above
+JAE - jump if result of unsigned compare is above or equal
+JB - jump if result of unsigned compare is below
+JBE - jump if result of unsigned compare is below or equal
+JC - jump if carry flag is set
+JE - jump if equal
+JG - jump if greater than 
+JGE - jump if greater than or equal
+JNC - jump if carry not set
+JMP - go to / jmp (simply loads the RPC register with the address)
+
+---------------------------------------------------------
+
+Bit Manipulation
+
+BT - bit test (test a bit)
+BTC - bit test and complement
+BTR - bit test and reset
+BTS - bit test and set
+RCL - rotate 9 bits (carry flag, 8 bits in operand) left count bits
+RCR - rotate 9 bits (carry flag, 8 bits in operand) right count bits
+ROL - rotate 8 bits in operand left count bits
+ROR - rotate 8 bits in operand right count bits
+SAL - arithmetic shift operand left count bits
+SAR - arithmetic shift operand right count bits (maintains sign bit)
+SHL - logical shift operand left count bits (same as SAL)
+SHR - logical shift operand right count bits (does not maintain sign bit)
+
+---------------------------------------------------------
+
+Register Manipulation, Casting/Conversions
+
+MOV - move register to register, move register to memory, move memory to register, copies data from one location to another
+    Example :
+    0x000000000040060e <+1>:	mov    %rsp,%rbp
+    Here, 'mov' move data register from '%rdp' to '%rsp'.
+XCHG - exchange register/memory with register
+CBW - convert byte to word
+CDQ - convert word to double word/convert double word to quad word
+
+---------------------------------------------------------
+
+Flags Manipulation
+
+CLC - clear carry flag/bit in flags register
+CLD - clear direction bit in flags register
+STC - set carry flag
+STD - set direction flag
+
+---------------------------------------------------------
+
+Stack Manipulation
+
+POP - pop a register off the stack
+POPF - pop stack into flags register
+PUSH - push a register on the stack
+     Example :    0x000000000040060d <+0>:	push   %rbp
+PUSHF - push flags register on the stack
+_________________________________________________________
+
+Opcodes
+
+For detailed information on the AVR machine instruction set, see
+<www.atmel.com/products/AVR>.
+
+   'as' implements all the standard AVR opcodes.  The following table
+summarizes the AVR opcodes, and their arguments.
+
+---------------------------------------------------------
+
+     Legend:
+        r   any register
+        d   'ldi' register (r16-r31)
+        v   'movw' even register (r0, r2, ..., r28, r30)
+        a   'fmul' register (r16-r23)
+        w   'adiw' register (r24,r26,r28,r30)
+        e   pointer registers (X,Y,Z)
+        b   base pointer register and displacement ([YZ]+disp)
+        z   Z pointer register (for [e]lpm Rd,Z[+])
+        M   immediate value from 0 to 255
+        n   immediate value from 0 to 255 ( n = ~M ). Relocation impossible
+        s   immediate value from 0 to 7
+        P   Port address value from 0 to 63. (in, out)
+        p   Port address value from 0 to 31. (cbi, sbi, sbic, sbis)
+        K   immediate value from 0 to 63 (used in 'adiw', 'sbiw')
+        i   immediate value
+        l   signed pc relative offset from -64 to 63
+        L   signed pc relative offset from -2048 to 2047
+        h   absolute code address (call, jmp)
+        S   immediate value from 0 to 7 (S = s << 4)
+        ?   use this opcode entry if no parameters, else use next opcode entry
+
+_________________________________________________________
+
+REGISTERS
+r... : registers
+
+Each line follow this syntax :
+     - element1 : Register,
+     - element2 : Lower 32 bits
+     - element3 : Lower 16 bits
+     - element4 : 8 bits
+
+Example : rax (=element1) / eax (=element2) / ax (=element3) / ah/al (=element4)
+---------------------------------------------------------
+Data registers :
+
+     rax	eax	ax	ah/al -> accumulator for arithmetic operations and input/output.
+     rbx	ebx	bx	bh/bl -> base register for use with arrays.
+     rcx	ecx	cx	ch/cl -> counter for loops.
+     rdx	edx	dx	dh/dl -> data register used to improve the precision of RAX in mathematical and input/output operations.
+---------------------------------------------------------		
+Index registers	:
+
+      rsi	esi	si	sil -> source index for string operations
+      rdi	edi	di	dil -> destination index for string operations.
+---------------------------------------------------------
+Pointer registers :
+
+    rbp		  ebp	bp	bpl -> base pointer that holds the address of the current stack frame.
+    rsp		  esp	sp	spl -> stack pointer that points to the top address of the stack.
+---------------------------------------------------------
+Other registers :
+
+      r8	r8d	r8w	r8b
+      r9	r9d	r9w	r9b
+      r10	r10d	r10w	r10b
+      r11	r11d	r11w	r11b
+      r12	r12d	r12w	r12b
+      r13	r13d	r13w	r13b
+      r14	r14d	r14w	r14b
+      r15	r15d	r15w	r15b
+
+_________________________________________________________
